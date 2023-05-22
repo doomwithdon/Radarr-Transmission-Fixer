@@ -7,7 +7,7 @@
 #
 
 #VARIABLES
-REMOTE="transmission-remote -n USER:PASSWD" #Change USER and PASSWD
+#REMOTE="transmission-remote -n USER:PASSWD" #Change USER and PASSWD
 DLDIR="radarr" #Name of the folder radarr downlaods all torrents into, can be customised with 'Category' option in download client options
 
 ENABLE_RADARR_REFRESH=0 #set 1 if you want radarr to refresh the movie after moving a download to scan and update directory in radarr, important for things like bazarr
@@ -83,8 +83,8 @@ if [ -e "$STORED_FILE" ]; then
     fi
     
     #REMOTE -t TorrentID --find /New/Torrent/Data/Location
-    $REMOTE -t "$TORRENT_ID" --find "$DEST"
-    printf '%s | INFO  | Torrent ID: %s, data now in: %s\n' "$DT" "$TORRENT_ID" "$DEST" >> "$LOG"
+   # $REMOTE -t "$TORRENT_ID" --find "$DEST"
+  #  printf '%s | INFO  | Torrent ID: %s, data now in: %s\n' "$DT" "$TORRENT_ID" "$DEST" >> "$LOG"
 
     if [ -e "$ORIGIN_FILE" ]; then
         rm -f "$ORIGIN_FILE"
@@ -105,7 +105,7 @@ if [ -e "$STORED_FILE" ]; then
                     rm -rf "$SOURCEDIR"
                     printf '%s | INFO  | Deleted original additional files %s\n' "$DT" "$TDEST" >> "$LOG"
                     #We moved torrent folders, verify torrent to make sure everything is ok!
-                    $REMOTE -t "$TORRENT_ID" -v
+                    #$REMOTE -t "$TORRENT_ID" -v
                     
                     if [ $ENABLE_PLEX_TRASH -eq 1 ]; then
                         printferr "| INFO | Telling Plex to clean up trash"
