@@ -127,6 +127,8 @@ if [ -e "$STORED_FILE" ]; then
         fi
         
     else
+        $REMOTE -t "$TORRENT_ID" -v
+        $REMOTE -t "$TORRENT_ID" -s
         printf '%s | ERROR | No origin file found to remove for: %s | %s\n' "$DT" "$TORRENT_NAME" "$TORRENT_ID" >> "$LOG"
     fi
 else
